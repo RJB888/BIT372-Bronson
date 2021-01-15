@@ -30,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
+        EventDb db = Room.databaseBuilder(getApplicationContext(),
+                EventDb.class, EventDb.DATABASE_NAME).allowMainThreadQueries().build();
+        EventDao dao = db.eventDao();
+        ArrayAdapter<Event> adapter = new EventListAdapter(getApplicationContext(), dao.getAllEvent());
+        eventList.setAdapter(adapter);
     }
 }

@@ -2,6 +2,7 @@ package com.example.roomdbexample;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,7 +13,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 public class CreateEventActivity extends AppCompatActivity {
+
+    private static final HashMap<String, Integer> images;
+    static {
+        images = new HashMap<>();
+        images.put("party", R.drawable.party);
+        images.put("concert", R.drawable.concert);
+        images.put("gathering", R.drawable.business_meeting);
+        images.put("food", R.drawable.food);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +41,10 @@ public class CreateEventActivity extends AppCompatActivity {
         Button createBtn = findViewById(R.id.create_btn);
         EditText title = findViewById(R.id.event_title_edit);
         EditText date = findViewById(R.id.event_date);
+    //create the db and the dao objects so the event listener can change the database
+        EventDb db = Room.databaseBuilder(getApplicationContext(),
+                EventDb.class, EventDb.DATABASE_NAME).allowMainThreadQueries().build();
+        EventDao dao = db.eventDao();
 
         createBtn.setOnClickListener((view) -> {
             String titleStr = title.getText().toString();
@@ -37,6 +54,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 Log.i("DEBUG", "EMPTY VALUES");
                 return;
             }
+            dao.insertEvent(new Event(titleStr, dateStr, images.get(typeKey)));
             title.setText("");
             date.setText("");
             Toast.makeText(this, "Event Created", Toast.LENGTH_LONG).show();
