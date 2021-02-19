@@ -22,4 +22,17 @@ public class ConverterTest {
         assertEquals(10.6376, Converter.toKilogram(23.452f), 0.01);
     }
 
+    @Test
+    public void ounce_conversion_to_ml() {
+        assertEquals(147.8675, Converter.toMilliliter(5f), 0.01);
+        assertEquals(0, Converter.toMilliliter(0.0f), 0.01);
+        assertEquals(7.09764, Converter.toMilliliter(.24f), 0.01);
+    }
+
+    @Test
+    public void ft_conversion_to_m() {
+        assertEquals(30.48, Converter.toMeter(100f), 0.01);
+        assertEquals(0, Converter.toMeter(0.0f), 0.01);
+        assertEquals(7.14756, Converter.toMeter(23.45f), 0.01);
+    }
 }

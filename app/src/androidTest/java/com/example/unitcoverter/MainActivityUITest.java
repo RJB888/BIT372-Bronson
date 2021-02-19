@@ -35,6 +35,8 @@ public class MainActivityUITest {
 
     @Test
     public void can_enter_fahrenheit() {
+        onView(withId(R.id.conversion_spinner)).perform(click());
+        onView(withText("F to C")).perform(click());
         onView(withId(R.id.input_field)).perform(typeText("45"));
         onView(withId(R.id.convert_btn)).perform(click());
         onView(withId(R.id.output_text)).check(matches(withText("7.22 ºC")));
@@ -42,34 +44,45 @@ public class MainActivityUITest {
 
     @Test
     public void should_not_enter_empty_fah() {
+        onView(withId(R.id.conversion_spinner)).perform(click());
+        onView(withText("F to C")).perform(click());
         onView(withId(R.id.convert_btn)).perform(click());
-        onView(withId(R.id.output_text)).check(matches(withText("ºC")));
+        onView(withId(R.id.output_text)).check(matches(withText("")));
     }
 
     @Test
     public void can_enter_pounds() {
-        onView(withId(R.id.pounds_input)).perform(typeText("2"));
-        onView((withId(R.id.pound_convert_btn))).perform(click());
-        onView(withId(R.id.kilograms_text)).check(matches(withText("0.91 kg")));
+        onView(withId(R.id.conversion_spinner)).perform(click());
+        onView(withText("lb to kg")).perform(click());
+        onView(withId(R.id.input_field)).perform(typeText("2"));
+        onView((withId(R.id.convert_btn))).perform(click());
+        onView(withId(R.id.output_text)).check(matches(withText("0.91 kg")));
     }
 
     @Test
     public void can_enter_zero() {
-        onView(withId(R.id.pounds_input)).perform(typeText("0"));
-        onView((withId(R.id.pound_convert_btn))).perform(click());
-        onView(withId(R.id.kilograms_text)).check(matches(withText("0.00 kg")));
+        onView(withId(R.id.conversion_spinner)).perform(click());
+        onView(withText("lb to kg")).perform(click());
+        onView(withId(R.id.input_field)).perform(typeText("0"));
+        onView((withId(R.id.convert_btn))).perform(click());
+        onView(withId(R.id.output_text)).check(matches(withText("0.00 kg")));
     }
 
     @Test
     public void can_enter_decimals() {
-        onView(withId(R.id.pounds_input)).perform(typeText("2.2"));
-        onView((withId(R.id.pound_convert_btn))).perform(click());
-        onView(withId(R.id.kilograms_text)).check(matches(withText("1.00 kg")));
+        onView(withId(R.id.conversion_spinner)).perform(click());
+        onView(withText("lb to kg")).perform(click());
+        onView(withId(R.id.input_field)).perform(typeText("2.2"));
+        onView((withId(R.id.convert_btn))).perform(click());
+        onView(withId(R.id.output_text)).check(matches(withText("1.00 kg")));
     }
 
     @Test
-    public void cannot_leave_blank() {
-        onView((withId(R.id.pound_convert_btn))).perform(click());
-        onView(withId(R.id.kilograms_text)).check(matches(withText(" kg")));
+    public void selection_changes_title(){
+        onView(withId(R.id.fahrenheit_title)).check(matches(withText("Fahrenheit to Celcius")));
+        onView(withId(R.id.conversion_spinner)).perform(click());
+        onView(withText("ft to m")).perform(click());
+        onView(withId(R.id.fahrenheit_title)).check(matches(withText("Feet to Meters")));
     }
+
 }

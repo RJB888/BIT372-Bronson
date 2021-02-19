@@ -8,7 +8,7 @@ public class Converter {
     public static float toKilogram(float lbs) {
         return lbs * 0.45359237f; }
 
-    public static float toMilliliter(int oz){
+    public static float toMilliliter(float oz){
         return (float) (oz * 29.5735);
     }
 
