@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Log.i("info", selected);
         switch(selected) {
             case "F to C":
-                Toast.makeText(this,"This ran", Toast.LENGTH_LONG).show();
                 title.setTitle("Fahrenheit to Celcius");
                 doConversion = findViewById(R.id.convert_btn);
                 doConversion.setOnClickListener(v -> {
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 });
                 break;
             case "lb to kg":
-                Toast.makeText(this,"Pound converter ran", Toast.LENGTH_LONG).show();
                 title.setTitle("Pounds to Kilograms");
                 doConversion = findViewById(R.id.convert_btn);
                 doConversion.setOnClickListener(v -> {
@@ -89,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 });
                 break;
             case "oz to ml":
-                Toast.makeText(this,"Ounce converter ran", Toast.LENGTH_LONG).show();
                 title.setTitle("Ounces to Milliliters");
                 doConversion = findViewById(R.id.convert_btn);
                 doConversion.setOnClickListener(v -> {
@@ -100,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 });
                 break;
             case "ft to m":
-                Toast.makeText(this,"Foot converter ran", Toast.LENGTH_LONG).show();
                 title.setTitle("Feet to Meters");
                 doConversion = findViewById(R.id.convert_btn);
                 doConversion.setOnClickListener(v -> {
